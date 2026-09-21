@@ -31,6 +31,10 @@ class ResCompany(models.Model):
         ),
     )
 
+    def _get_company_root_delegated_field_names(self):
+        # El régimen CAEA es por CUIT: una sucursal lo hereda de su raíz.
+        return super()._get_company_root_delegated_field_names() + ["l10n_ar_caea_enabled"]
+
     def action_l10n_ar_request_caea(self):
         """Pide CAEA para la próxima quincena disponible.
 
@@ -54,7 +58,8 @@ class ResCompany(models.Model):
             periodo = "%04d%02d" % (year, month)
             orden = 1
 
-        rec = self.env["l10n_ar.caea"].request_caea(self, periodo, orden)
+        # El CAEA es por CUIT: siempre sobre la compañía raíz.
+        rec = self.env["l10n_ar.caea"].request_caea(self._l10n_ar_afip_company(), periodo, orden)
         return {
             "type": "ir.actions.act_window",
             "name": _("CAEA solicitado"),
@@ -72,7 +77,7 @@ class ResCompany(models.Model):
             "name": _("CAEA — %s") % self.name,
             "res_model": "l10n_ar.caea",
             "view_mode": "list,form",
-            "domain": [("company_id", "=", self.id)],
+            "domain": [("company_id", "=", self._l10n_ar_afip_company().id)],
         }
 
     def action_l10n_ar_view_caea_log(self):
@@ -83,5 +88,5 @@ class ResCompany(models.Model):
             "name": _("Log CAEA — %s") % self.name,
             "res_model": "l10n_ar.caea.log",
             "view_mode": "list,form",
-            "domain": [("company_id", "=", self.id)],
+            "domain": [("company_id", "=", self._l10n_ar_afip_company().id)],
         }

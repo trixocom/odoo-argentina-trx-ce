@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI — CAEA",
-    "version": "19.0.2.0.1",
+    "version": "19.0.2.1.0",
     "category": "Accounting/Localizations/EDI",
     "summary": "CAEA — Código de Autorización Electrónico Anticipado (régimen de contingencia)",
     "description": """

@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI — Cliente Web Services AFIP/ARCA",
-    "version": "19.0.0.7.2",
+    "version": "19.0.0.8.0",
     "category": "Accounting/Localizations/EDI",
     "summary": "Cliente Python puro para WSAA, WSFEv1 y futuros WSFEX/WSBFE/WSCDC",
     "description": """

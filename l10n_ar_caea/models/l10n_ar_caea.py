@@ -120,6 +120,9 @@ class L10nArCaea(models.Model):
         :raises UserError: si AFIP devuelve error o no asigna CAEA.
         """
         Log = self.env["l10n_ar.caea.log"]
+        # El CAEA lo otorga AFIP por CUIT: una sucursal (parent_id) usa el
+        # de su compañía raíz.
+        company = company._l10n_ar_afip_company()
         existing = self.search([
             ("company_id", "=", company.id),
             ("periodo", "=", periodo),
@@ -245,7 +248,11 @@ class L10nArCaea(models.Model):
         """
         today = fields.Date.context_today(self)
         Company = self.env["res.company"].sudo()
-        companies = Company.search([("l10n_ar_caea_enabled", "=", True)])
+        # Solo compañías raíz: las sucursales comparten el CAEA de su CUIT.
+        companies = Company.search([
+            ("l10n_ar_caea_enabled", "=", True),
+            ("parent_id", "=", False),
+        ])
         for company in companies:
             try:
                 self._cron_request_for_company(company, today)
@@ -290,6 +297,7 @@ class L10nArCaea(models.Model):
         Vigente = state=active AND fch_vig_desde <= date <= fch_vig_hasta.
         """
         d = target_date or fields.Date.context_today(self)
+        company = company._l10n_ar_afip_company()
         return self.search([
             ("company_id", "=", company.id),
             ("state", "=", "active"),

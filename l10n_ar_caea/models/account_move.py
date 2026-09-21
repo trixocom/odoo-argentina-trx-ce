@@ -290,7 +290,12 @@ class AccountMove(models.Model):
         Sólo corre para companies con `l10n_ar_caea_enabled=True`.
         """
         Company = self.env["res.company"].sudo()
-        active_companies = Company.search([("l10n_ar_caea_enabled", "=", True)])
+        # Solo compañías raíz: el CAEA y su rendición son por CUIT; los
+        # comprobantes de las sucursales se buscan con child_of.
+        active_companies = Company.search([
+            ("l10n_ar_caea_enabled", "=", True),
+            ("parent_id", "=", False),
+        ])
         if not active_companies:
             return True
 
@@ -316,7 +321,7 @@ class AccountMove(models.Model):
             # cerca del tope informativo (próximos 3 días) — para no
             # acumular hasta el último día.
             pending_close = self.search([
-                ("company_id", "=", company.id),
+                ("company_id", "child_of", company.id),
                 ("l10n_ar_afip_auth_mode", "=", "CAEA"),
                 ("l10n_ar_caea_rendido", "=", False),
                 ("state", "=", "posted"),
@@ -332,7 +337,7 @@ class AccountMove(models.Model):
         FECAEARegInformativo. Si no → FECAEASinMovimientoInformar
         por cada punto de venta CAEA. Marca como `reported` al final."""
         moves = self.search([
-            ("company_id", "=", caea.company_id.id),
+            ("company_id", "child_of", caea.company_id.id),
             ("l10n_ar_afip_auth_mode", "=", "CAEA"),
             ("l10n_ar_caea_id", "=", caea.id),
             ("l10n_ar_caea_rendido", "=", False),
@@ -383,7 +388,7 @@ class AccountMove(models.Model):
         environment = company.l10n_ar_afip_ws_environment or "testing"
         Journal = self.env["account.journal"].sudo()
         journals = Journal.search([
-            ("company_id", "=", company.id),
+            ("company_id", "child_of", company.id),
             ("l10n_ar_afip_pos_caea", "=", True),
             ("l10n_ar_afip_pos_number", "!=", False),
         ])

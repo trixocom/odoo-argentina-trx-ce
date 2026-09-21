@@ -95,15 +95,25 @@ class L10nArAfipWsConnection(models.Model):
     # ------------------------------------------------------------------
     @api.model
     def _get_or_create(self, company, ws, environment):
-        """Devuelve (o crea) el registro de conexión para esa combinación."""
-        rec = self.search([
+        """Devuelve (o crea) el registro de conexión para esa combinación.
+
+        Sucursales (`parent_id`): la conexión se resuelve SIEMPRE sobre la
+        compañía raíz. Una sucursal comparte CUIT y certificado con su raíz
+        (ver `l10n_ar_trx_edi_base`) y el TA de WSAA es único por (CUIT,
+        servicio): si cada sucursal pidiera el suyo, AFIP rechazaría el
+        segundo con "El CEE ya posee un TA válido". Se usa sudo porque el
+        usuario de una sucursal no necesariamente tiene la raíz entre sus
+        compañías permitidas.
+        """
+        company = company._l10n_ar_afip_company()
+        rec = self.sudo().search([
             ("company_id", "=", company.id),
             ("ws", "=", ws),
             ("environment", "=", environment),
         ], limit=1)
         if rec:
             return rec
-        return self.create({
+        return self.sudo().create({
             "company_id": company.id,
             "ws": ws,
             "environment": environment,
