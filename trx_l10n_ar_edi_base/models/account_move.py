@@ -2,7 +2,7 @@
 """Campos AFIP sobre `account.move`.
 
 Acá solo *declaramos* los campos; la lógica de emisión (llamar al WS,
-guardar CAE, recalcular QR) vive en `l10n_ar_trx_edi` — así este módulo
+guardar CAE, recalcular QR) vive en `trx_l10n_ar_edi` — así este módulo
 puede estar instalado para cargar datos maestros sin abrir la
 posibilidad de emitir.
 
@@ -81,10 +81,10 @@ class AccountMove(models.Model):
     )
 
     def _compute_l10n_ar_afip_qr_code(self):
-        """Stub: `l10n_ar_trx_edi` lo override con la lógica real RG 4291.
+        """Stub: `trx_l10n_ar_edi` lo override con la lógica real RG 4291.
 
         Lo dejamos como compute en base para que las vistas ya puedan
-        referenciar el campo aunque `l10n_ar_trx_edi` no esté instalado.
+        referenciar el campo aunque `trx_l10n_ar_edi` no esté instalado.
         """
         for move in self:
             move.l10n_ar_afip_qr_code = False

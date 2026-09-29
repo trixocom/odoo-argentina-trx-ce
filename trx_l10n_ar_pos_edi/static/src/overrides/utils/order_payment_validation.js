@@ -2,7 +2,7 @@
 // Suprimir descarga automática del PDF de la factura post-pago en POS
 // para companies argentinas. El PDF "Factura A 01001-..." que abre Odoo
 // en una pestaña nueva no aporta — el ticket POS ya tiene el QR + CAE
-// (l10n_ar_trx_pos_edi/static/src/overrides/screens/receipt/order_receipt.xml)
+// (trx_l10n_ar_pos_edi/static/src/overrides/screens/receipt/order_receipt.xml)
 // y eso cubre los requisitos de RG 4291.
 //
 // Si la company NO es AR, mantenemos el comportamiento default (descarga

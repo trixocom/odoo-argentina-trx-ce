@@ -38,7 +38,7 @@ class AccountJournal(models.Model):
     # `_l10n_ar_afip_ws_for_emission`, el hook de `_post()` los salteaba con
     # un `continue` silencioso y las facturas quedaban posteadas SIN CAE, sin
     # error visible para el operador. Referencia de Odoo
-    # (l10n_ar_trx_edi/models/account_journal.py):
+    # (trx_l10n_ar_edi/models/account_journal.py):
     #     res.insert(0, ('RAW_MAW', _('Electronic Invoice - Web Service')))
     #     type_mapping = {'RAW_MAW': 'wsfe', 'FEEWS': 'wsfex', 'BFEWS': 'wsbfe'}
     # `RLI_RLM` (Online Invoice / comprobantes en línea) se conserva por
@@ -46,7 +46,7 @@ class AccountJournal(models.Model):
     _L10N_AR_WSFE_POS_SYSTEMS = ("RAW_MAW", "RLI_RLM")
 
     # WSFEXv1 POS systems — Factura Electrónica de Exportación. Implementado
-    # 2026-04-27 en l10n_ar_trx_edi (Fase 4 — facturas E).
+    # 2026-04-27 en trx_l10n_ar_edi (Fase 4 — facturas E).
     _L10N_AR_WSFEX_POS_SYSTEMS = ("FEERCEL", "FEERCELP")
 
     @property

@@ -66,7 +66,7 @@ def get_rates(timeout=15):
                 url, timeout=timeout, verify=True,
                 headers={
                     "Accept": "application/json",
-                    "User-Agent": "Odoo l10n_ar_trx_edi/1.0",
+                    "User-Agent": "Odoo trx_l10n_ar_edi/1.0",
                 },
             )
         except requests.exceptions.RequestException as e:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="l10n_ar_trx_pos_edi.ReceiptHeader"
+    <t t-name="trx_l10n_ar_pos_edi.ReceiptHeader"
        t-inherit="point_of_sale.ReceiptHeader"
        t-inherit-mode="extension">
         <!-- Reemplaza "Ticket <ref>" por el nombre del comprobante (FA-A ...)

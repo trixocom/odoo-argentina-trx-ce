@@ -4,7 +4,7 @@
 Replica la sección "Localización para Argentina" de enterprise:
 
 - Webservices ARCA: entorno + cert + key (campos de res.company existentes
-  en l10n_ar_trx_edi_base).
+  en trx_l10n_ar_edi_base).
 - Verificar validez facturas proveedor en AFIP (WSCDC).
 - Opción transmisión FCE MiPyME (SCA/ADC).
 - Política pago moneda extranjera (RG 5616).
@@ -48,7 +48,7 @@ class ResConfigSettings(models.TransientModel):
 
     # ------------------------------------------------------------------
     # Settings de cert/entorno (ya existían en res.company via
-    # l10n_ar_trx_edi_base) — los exponemos acá para que aparezcan agrupados
+    # trx_l10n_ar_edi_base) — los exponemos acá para que aparezcan agrupados
     # con los demás de Argentina.
     # ------------------------------------------------------------------
     l10n_ar_afip_ws_environment = fields.Selection(

@@ -70,7 +70,7 @@ def get_rates(kind="billetes", timeout=15):
 
     try:
         r = requests.get(URL_BNA, timeout=timeout, verify=True,
-                         headers={"User-Agent": "Odoo l10n_ar_trx_edi/1.0"})
+                         headers={"User-Agent": "Odoo trx_l10n_ar_edi/1.0"})
     except requests.exceptions.RequestException as e:
         raise BnaError("HTTP request falló: %s" % e)
     if r.status_code != 200:

@@ -6,7 +6,7 @@ Responsabilidades de este archivo:
 1. Orquestar el flujo de emisión: mapear account.move a payload AFIP,
    llamar al WS, guardar CAE/vto/resultado/XML en el move.
 2. Calcular el QR RG 4291 cuando hay CAE (compute override del campo que
-   `l10n_ar_trx_edi_base` declaró como stub).
+   `trx_l10n_ar_edi_base` declaró como stub).
 3. Acción manual "Enviar a ARCA" para disparar emisión fuera del `_post`.
 4. Hook en `_post` — por ahora *opt-in*: solo se solicita CAE si el
    journal está marcado como electrónico. No queremos romper moves no
@@ -107,7 +107,7 @@ class AccountMove(models.Model):
     # Campos derivados
     # --------------------------------------------------------------
     def _compute_l10n_ar_afip_qr_code(self):
-        """Override del stub en l10n_ar_trx_edi_base. Calcula la URL del QR RG 4291."""
+        """Override del stub en trx_l10n_ar_edi_base. Calcula la URL del QR RG 4291."""
         for move in self:
             if not (move.l10n_ar_afip_auth_code and move.l10n_ar_afip_auth_mode in ("CAE", "CAEA")):
                 move.l10n_ar_afip_qr_code = False
@@ -1176,14 +1176,14 @@ class AccountMove(models.Model):
             last_nro = self._l10n_ar_get_afip_last_authorized()
         except Exception as exc:  # noqa: BLE001 -- no romper el posteo por caida de WS
             _logger.warning(
-                'l10n_ar_trx_edi seq-sync: fallo FECompUltimoAutorizado %s (PV %s tipo %s): %s',
+                'trx_l10n_ar_edi seq-sync: fallo FECompUltimoAutorizado %s (PV %s tipo %s): %s',
                 self.display_name, self.journal_id.l10n_ar_afip_pos_number,
                 self.l10n_latam_document_type_id.code, exc)
             return result
         if not last_nro:
             return result
         _logger.info(
-            'l10n_ar_trx_edi seq-sync: %s (PV %s tipo %s) arranca desde AFIP %s -> proximo %s',
+            'trx_l10n_ar_edi seq-sync: %s (PV %s tipo %s) arranca desde AFIP %s -> proximo %s',
             self.display_name, self.journal_id.l10n_ar_afip_pos_number,
             self.l10n_latam_document_type_id.code, last_nro, int(last_nro) + 1)
         return self._get_formatted_sequence(number=int(last_nro))

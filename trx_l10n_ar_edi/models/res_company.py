@@ -1,8 +1,8 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
-"""Settings AFIP/ARCA en `res.company` que viven en l10n_ar_trx_edi.
+"""Settings AFIP/ARCA en `res.company` que viven en trx_l10n_ar_edi.
 
 Acá ponemos los campos que necesitan que la **emisión** esté instalada
-(no son solo metadata como los de `l10n_ar_trx_edi_base`):
+(no son solo metadata como los de `trx_l10n_ar_edi_base`):
 
 - `l10n_ar_supplier_validation_type`: política para constatar facturas de
   proveedor en ARCA via WSCDC. 3 estados: no_disponible / disponible /

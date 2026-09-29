@@ -1,15 +1,15 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI (Trixocom) — Punto de Venta + Factura Electrónica",
-    "version": "19.0.0.2.0",
+    "version": "19.0.0.3.0",
     "category": "Accounting/Localizations/Point of Sale",
     "summary": "Emite FA-A/B/C electrónica desde POS con QR RG 4291 y CAE en el ticket",
     "description": """
 Conecta el Punto de Venta de Odoo Community 19 con la facturación
-electrónica argentina ya implementada en `l10n_ar_trx_edi`. Cuando una venta
+electrónica argentina ya implementada en `trx_l10n_ar_edi`. Cuando una venta
 de POS se factura como FA-A/B/C electrónica:
 
-* La `account.move` generada pasa por el ``_post()`` de `l10n_ar_trx_edi`
+* La `account.move` generada pasa por el ``_post()`` de `trx_l10n_ar_edi`
   que emite el CAE contra WSFEv1 automáticamente (reusa todo el motor).
 * El **ticket de POS** muestra el **QR de RG 4291** + el **CAE** y su
   vencimiento, encima del bloque "Need an invoice?" estándar.
@@ -33,12 +33,12 @@ Spec QR: https://www.afip.gob.ar/fe/qr/documentos/QR-Especificacionesv1.pdf
     "license": "LGPL-3",
     "depends": [
         "point_of_sale",
-        "l10n_ar_trx_edi",
+        "trx_l10n_ar_edi",
     ],
     "data": [],
     "assets": {
         "point_of_sale._assets_pos": [
-            "l10n_ar_trx_pos_edi/static/src/**/*",
+            "trx_l10n_ar_pos_edi/static/src/**/*",
         ],
     },
     "installable": True,

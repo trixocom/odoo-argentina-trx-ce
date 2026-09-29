@@ -72,7 +72,7 @@ class IrModuleModule(models.Model):
         langs = self._l10n_ar_terms_langs()
         if not langs:
             _logger.info(
-                "l10n_ar_trx_edi_base: ningún idioma AR activo (%s); se omite la jerga contable",
+                "trx_l10n_ar_edi_base: ningún idioma AR activo (%s); se omite la jerga contable",
                 ", ".join(_AR_LANGS),
             )
             return True
@@ -90,7 +90,7 @@ class IrModuleModule(models.Model):
             return True
 
         # _load_module_terms ignora los idiomas para los que el módulo no tiene .po.
-        self._load_module_terms(["l10n_ar_trx_edi_base"], langs, overwrite=True)
+        self._load_module_terms(["trx_l10n_ar_edi_base"], langs, overwrite=True)
 
         changed = []
         for lang in langs:
@@ -105,7 +105,7 @@ class IrModuleModule(models.Model):
 
         if changed:
             _logger.info(
-                "l10n_ar_trx_edi_base: jerga contable AR aplicada en %s",
+                "trx_l10n_ar_edi_base: jerga contable AR aplicada en %s",
                 ", ".join(changed),
             )
         return True

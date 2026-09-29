@@ -16,7 +16,7 @@
            Manager por privacidad de los datos del partner).
     -->
     <record id="view_move_form_l10n_ar_edi" model="ir.ui.view">
-        <field name="name">account.move.form.l10n_ar_trx_edi</field>
+        <field name="name">account.move.form.trx_l10n_ar_edi</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">

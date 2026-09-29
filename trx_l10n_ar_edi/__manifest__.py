@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI (Trixocom) — Emisión Electrónica",
-    "version": "19.0.0.8.0",
+    "version": "19.0.0.9.0",
     "category": "Accounting/Localizations/EDI",
     "summary": "Emisión de comprobantes electrónicos argentinos (WSFEv1, A/B/C)",
     "description": """
@@ -17,7 +17,7 @@ Funcionalidades principales:
 * Generación del código QR AFIP según RG 4291 incluido en el PDF de factura.
 * Wizard "Consultar en ARCA" para consultar un comprobante puntual o el
   último emitido (útil para desincronización de secuencias).
-* Controller `/l10n_ar_trx_edi/download_csr/<company_id>` para generar CSR que
+* Controller `/trx_l10n_ar_edi/download_csr/<company_id>` para generar CSR que
   después se sube a WSASS (homologación) o al portal AFIP (producción).
 * Reportes QWeb con leyenda legal según condición IVA del emisor.
 
@@ -28,7 +28,7 @@ Exento/No alcanzado (C).
     "website": "https://trixocom.com",
     "license": "LGPL-3",
     "depends": [
-        "l10n_ar_trx_edi_base",
+        "trx_l10n_ar_edi_base",
         "l10n_ar_afip_ws",
     ],
     "data": [

@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI (Trixocom) — Base",
-    "version": "19.0.0.5.0",
+    "version": "19.0.0.6.0",
     "category": "Accounting/Localizations/EDI",
     "summary": "Campos y modelos base para facturación electrónica AR en Odoo Community",
     "description": """
@@ -11,11 +11,11 @@ Extiende los modelos core (res.company, account.journal, account.move,
 res.currency, product.template) con los campos necesarios para soportar
 facturación electrónica argentina. No implementa todavía la lógica de
 emisión ni el cliente de web service — esos viven en l10n_ar_afip_ws y
-l10n_ar_trx_edi.
+trx_l10n_ar_edi.
 
 Este módulo se puede instalar por sí solo para preparar la base de datos,
 pero no aporta funcionalidad visible al usuario hasta que se instala
-l10n_ar_trx_edi encima.
+trx_l10n_ar_edi encima.
     """,
     "author": "Trixocom",
     "website": "https://trixocom.com",

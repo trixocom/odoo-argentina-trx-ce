@@ -12,7 +12,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n_ar_trx_edi_base 19.0\n"
+"Project-Id-Version: trx_l10n_ar_edi_base 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-30 00:00+0000\n"
 "PO-Revision-Date: 2026-08-05 00:00+0000\n"
