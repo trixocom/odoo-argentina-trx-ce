@@ -58,19 +58,19 @@ Odoo Community trae el módulo base `l10n_ar` con el plan de cuentas, tipos de c
         ┌───────────────────────────┼─────────────────────────┐
         │                           │                          │
 ┌───────▼──────────────┐ ┌──────────▼───────┐    ┌────────────▼─────┐
-│ l10n_ar_trx_edi_base │ │  l10n_ar_afip_ws │    │   certificate    │
+│ trx_l10n_ar_edi_base │ │  l10n_ar_afip_ws │    │   certificate    │
 │    (campos AFIP)     │ │  (WSAA + WSFE)   │    │ (cert + key)     │
 └──────────┬───────────┘ └────────┬─────────┘    └──────────────────┘
            │                      │
            └──────────┬───────────┘
                       │
             ┌─────────▼────────┐
-            │  l10n_ar_trx_edi │  Orquestador emisión + QR
+            │  trx_l10n_ar_edi │  Orquestador emisión + QR
             └─────────┬────────┘
                       │
         ┌─────────────┼──────────────┬────────────┬────────────┐
         │             │              │            │            │
-   l10n_ar_caea  l10n_ar_trx_    Libro IVA   IVA Simple   Mis Cbtes
+   l10n_ar_caea  trx_l10n_ar_    Libro IVA   IVA Simple   Mis Cbtes
    (contingencia)  pos_edi        Digital                   (cotejo)
                  (POS+FE)
 
@@ -281,7 +281,7 @@ addons_path = /opt/odoo/addons,/opt/odoo/addons/argentina
 # 3. Reiniciar Odoo y actualizar lista de aplicaciones
 sudo systemctl restart odoo
 
-# 4. En Odoo: Apps → buscar "l10n_ar_trx_edi" → Instalar
+# 4. En Odoo: Apps → buscar "trx_l10n_ar_edi" → Instalar
 #    (las dependencias se instalan en cascada)
 
 # 5. Subir certificado AFIP en Configuración → Certificados
@@ -295,16 +295,16 @@ sudo systemctl restart odoo
 
 | Módulo | Versión | Estado |
 |---|---|---|
-| `l10n_ar_trx_edi_base` | 19.0.0.4.0 | ✅ Producción |
-| `l10n_ar_afip_ws` | 19.0.0.7.2 | ✅ Producción |
-| `l10n_ar_trx_edi` | 19.0.0.8.0 | ✅ Producción |
+| `trx_l10n_ar_edi_base` | 19.0.0.6.0 | ✅ Producción |
+| `l10n_ar_afip_ws` | 19.0.0.8.1 | ✅ Producción |
+| `trx_l10n_ar_edi` | 19.0.0.9.0 | ✅ Producción |
 | `l10n_ar_padron_query` | 19.0.0.1.1 | ✅ Producción |
-| `l10n_ar_libro_iva_digital` | 19.0.0.2.1 | ✅ Producción |
+| `l10n_ar_libro_iva_digital` | 19.0.0.2.2 | ✅ Producción |
 | `l10n_ar_iva_simple` | 19.0.0.2.0 | ✅ Producción |
-| `l10n_ar_trx_pos_edi` | 19.0.0.2.0 | ✅ Producción |
-| `l10n_ar_caea` | 19.0.2.0.1 | ✅ Producción |
-| `l10n_ar_mis_comprobantes` | 19.0.2.0.2 | ✅ Producción |
-| `l10n_ar_iibb_percepciones` | 19.0.1.1.2 | ✅ Producción + ARBA WS |
+| `trx_l10n_ar_pos_edi` | 19.0.0.3.0 | ✅ Producción |
+| `l10n_ar_caea` | 19.0.2.1.1 | ✅ Producción |
+| `l10n_ar_mis_comprobantes` | 19.0.2.0.3 | ✅ Producción |
+| `l10n_ar_iibb_percepciones` | 19.0.1.1.3 | ✅ Producción + ARBA WS |
 | `l10n_ar_padron_base` | 19.0.1.0.0 | ✅ Implementado |
 | `l10n_ar_padron_caba` | 19.0.1.3.0 | ✅ Implementado |
 | `l10n_ar_padron_santafe` | 19.0.1.3.0 | ✅ Implementado |
@@ -313,33 +313,36 @@ sudo systemctl restart odoo
 ### ⚠️ Renombrado de módulos (septiembre 2026)
 
 Tres módulos cambiaron de nombre técnico para no confundirse con el módulo
-`l10n_ar_edi` de **Odoo Enterprise** (mismo nombre, producto distinto):
+`l10n_ar_edi` de **Odoo Enterprise** (mismo nombre, producto distinto). Todo
+módulo de Trixocom lleva el prefijo `trx_`:
 
-| Nombre anterior | Nombre nuevo |
-|---|---|
-| `l10n_ar_edi` | `l10n_ar_trx_edi` |
-| `l10n_ar_edi_base` | `l10n_ar_trx_edi_base` |
-| `l10n_ar_pos_edi` | `l10n_ar_trx_pos_edi` |
+| Nombre original | Nombre intermedio (mirror 08-09 → 27-09-2026) | Nombre definitivo |
+|---|---|---|
+| `l10n_ar_edi` | `l10n_ar_trx_edi` | `trx_l10n_ar_edi` |
+| `l10n_ar_edi_base` | `l10n_ar_trx_edi_base` | `trx_l10n_ar_edi_base` |
+| `l10n_ar_pos_edi` | `l10n_ar_trx_pos_edi` | `trx_l10n_ar_pos_edi` |
 
 El resto de los módulos no cambia de nombre (sólo actualizan su `depends`).
 
-**Instalación nueva:** no hay nada que hacer, instalar `l10n_ar_trx_edi`.
+**Instalación nueva:** no hay nada que hacer, instalar `trx_l10n_ar_edi`.
 
-**Base que ya tenía instalados los nombres anteriores:** Odoo no renombra
-módulos instalados solo; hay que migrar la base UNA vez, antes de arrancar con
-el código nuevo, porque si el directorio `l10n_ar_edi` desaparece del addons
-path Odoo arranca con el módulo "instalado pero inexistente" y la facturación
-deja de funcionar. Los datos (facturas, CAE, logs de WS, certificados) no se
-tocan: sólo cambian las referencias al nombre del módulo.
+**Base que ya tenía instalado alguno de los nombres anteriores** (original o
+intermedio): Odoo no renombra módulos instalados solo; hay que migrar la base
+UNA vez, antes de arrancar con el código nuevo, porque si el directorio del
+módulo desaparece del addons path Odoo arranca con el módulo "instalado pero
+inexistente" y la facturación deja de funcionar. Los datos (facturas, CAE,
+logs de WS, certificados) no se tocan: sólo cambian las referencias al nombre
+del módulo.
 
 1. Backup de la base y del filestore (es el rollback).
 2. Detener Odoo (workers y cron de esa base).
 3. Con el código **viejo** todavía en disco, correr el SQL de abajo:
    `psql -U <usuario> -d <base> -v ON_ERROR_STOP=1 -f rename_trx_modules.sql`
-   (idempotente; aborta si el `l10n_ar_edi` instalado no es de Trixocom, p. ej.
-   el de Odoo Enterprise; el `SELECT` final debe devolver 0 filas).
+   (idempotente; cubre ambos orígenes; aborta si el `l10n_ar_edi` instalado
+   no es de Trixocom, p. ej. el de Odoo Enterprise; el `SELECT` final debe
+   devolver 0 filas).
 4. Reemplazar el código por esta versión.
-5. `odoo -d <base> -u l10n_ar_trx_edi_base --stop-after-init` (propaga a los
+5. `odoo -d <base> -u trx_l10n_ar_edi_base --stop-after-init` (propaga a los
    dependientes) y arrancar normalmente.
 6. Verificar: Apps muestra los tres módulos con el nombre nuevo, una factura
    con CAE conserva el tab AFIP y el PDF con QR, el POS emite un ticket.
@@ -354,20 +357,27 @@ tocan: sólo cambian las referencias al nombre del módulo.
 -- cambiaron de nombre técnico (sept. 2026), sin perder datos ni
 -- configuración:
 --
---     l10n_ar_edi       -> l10n_ar_trx_edi
---     l10n_ar_edi_base  -> l10n_ar_trx_edi_base
---     l10n_ar_pos_edi   -> l10n_ar_trx_pos_edi
+--     l10n_ar_edi           -> trx_l10n_ar_edi
+--     l10n_ar_edi_base      -> trx_l10n_ar_edi_base
+--     l10n_ar_pos_edi       -> trx_l10n_ar_pos_edi
+--
+-- y, para bases instaladas desde el mirror público entre el 08-09-2026 y
+-- el 27-09-2026 (nombres intermedios):
+--
+--     l10n_ar_trx_edi       -> trx_l10n_ar_edi
+--     l10n_ar_trx_edi_base  -> trx_l10n_ar_edi_base
+--     l10n_ar_trx_pos_edi   -> trx_l10n_ar_pos_edi
 --
 -- Cubre las mismas tablas que `util.rename_module` de odoo/upgrade-util:
 -- ir_module_module, ir_module_module_dependency, ir_model_data (registros
 -- del módulo y el xmlid base.module_<nombre>) e ir_ui_view.key.
 --
--- CÓMO USARLO (ver el procedimiento de arriba):
+-- CÓMO USARLO (ver docs/migracion_rename_trx.md):
 --   1. Backup de la base (y filestore).
 --   2. Odoo DETENIDO (ningún worker corriendo contra esta base).
 --   3. psql -d <base> -v ON_ERROR_STOP=1 -f rename_trx_modules.sql
 --   4. Reemplazar el código por la versión con los nombres nuevos.
---   5. Arrancar Odoo con: -u l10n_ar_trx_edi_base  (propaga a dependientes).
+--   5. Arrancar Odoo con: -u trx_l10n_ar_edi_base  (propaga a dependientes).
 --
 -- Es idempotente: si los módulos ya están renombrados no hace nada.
 -- Aborta si el `l10n_ar_edi` instalado NO es el de Trixocom (p. ej. el de
@@ -378,9 +388,12 @@ BEGIN;
 DO $$
 DECLARE
     pares  text[][] := ARRAY[
-        ['l10n_ar_edi',      'l10n_ar_trx_edi'],
-        ['l10n_ar_edi_base', 'l10n_ar_trx_edi_base'],
-        ['l10n_ar_pos_edi',  'l10n_ar_trx_pos_edi']
+        ['l10n_ar_edi',          'trx_l10n_ar_edi'],
+        ['l10n_ar_edi_base',     'trx_l10n_ar_edi_base'],
+        ['l10n_ar_pos_edi',      'trx_l10n_ar_pos_edi'],
+        ['l10n_ar_trx_edi',      'trx_l10n_ar_edi'],
+        ['l10n_ar_trx_edi_base', 'trx_l10n_ar_edi_base'],
+        ['l10n_ar_trx_pos_edi',  'trx_l10n_ar_pos_edi']
     ];
     viejo  text;
     nuevo  text;
@@ -456,16 +469,16 @@ END $$;
 
 -- Verificación: no debe quedar ninguna referencia a los nombres viejos.
 SELECT 'ir_module_module' AS tabla, name AS ref FROM ir_module_module
- WHERE name IN ('l10n_ar_edi', 'l10n_ar_edi_base', 'l10n_ar_pos_edi')
+ WHERE name IN ('l10n_ar_edi', 'l10n_ar_edi_base', 'l10n_ar_pos_edi', 'l10n_ar_trx_edi', 'l10n_ar_trx_edi_base', 'l10n_ar_trx_pos_edi')
 UNION ALL
 SELECT 'ir_module_module_dependency', name FROM ir_module_module_dependency
- WHERE name IN ('l10n_ar_edi', 'l10n_ar_edi_base', 'l10n_ar_pos_edi')
+ WHERE name IN ('l10n_ar_edi', 'l10n_ar_edi_base', 'l10n_ar_pos_edi', 'l10n_ar_trx_edi', 'l10n_ar_trx_edi_base', 'l10n_ar_trx_pos_edi')
 UNION ALL
 SELECT 'ir_model_data', module || '.' || name FROM ir_model_data
- WHERE module IN ('l10n_ar_edi', 'l10n_ar_edi_base', 'l10n_ar_pos_edi')
+ WHERE module IN ('l10n_ar_edi', 'l10n_ar_edi_base', 'l10n_ar_pos_edi', 'l10n_ar_trx_edi', 'l10n_ar_trx_edi_base', 'l10n_ar_trx_pos_edi')
 UNION ALL
 SELECT 'ir_ui_view', key FROM ir_ui_view
- WHERE key LIKE 'l10n\_ar\_edi.%' OR key LIKE 'l10n\_ar\_edi\_base.%' OR key LIKE 'l10n\_ar\_pos\_edi.%';
+ WHERE key LIKE 'l10n\_ar\_edi.%' OR key LIKE 'l10n\_ar\_edi\_base.%' OR key LIKE 'l10n\_ar\_pos\_edi.%' OR key LIKE 'l10n\_ar\_trx\_edi.%' OR key LIKE 'l10n\_ar\_trx\_edi\_base.%' OR key LIKE 'l10n\_ar\_trx\_pos\_edi.%';
 
 COMMIT;
 ```
