@@ -130,17 +130,17 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
         ▲
         │
 ┌───────┴──────────┐    ┌──────────────────┐    ┌─────────────────┐
-│ l10n_ar_trx_edi_base │◄───│  l10n_ar_afip_ws │◄───│  certificate    │
+│ trx_l10n_ar_edi_base │◄───│  l10n_ar_afip_ws │◄───│  certificate    │
 │  (campos AFIP)   │    │  (WSAA + WSFE)   │    │  (cert + key)   │
 └──────────────────┘    └──────────────────┘    └─────────────────┘
         ▲                       ▲
         │                       │
 ┌───────┴────────────────────────┴──────────────────────────────┐
-│   l10n_ar_trx_edi   ── orquestador emisión + QR + override _post   │
+│   trx_l10n_ar_edi   ── orquestador emisión + QR + override _post   │
 └────────────────────────────────────────────────────────────────┘
         ▲
         ├──── l10n_ar_caea            (régimen contingencia)
-        ├──── l10n_ar_trx_pos_edi         (POS + factura E)
+        ├──── trx_l10n_ar_pos_edi         (POS + factura E)
         ├──── l10n_ar_padron_query    (Padrón A13 AFIP)
         ├──── l10n_ar_libro_iva_digital   (RG 5616 — TXT + PDF)
         ├──── l10n_ar_iva_simple      (4 CSV portal ARCA)
@@ -163,7 +163,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
     <div class="icon bg-violet">📄</div>
     <div>
       <div class="name">Facturación electrónica mercado interno</div>
-      <code>l10n_ar_trx_edi · l10n_ar_trx_edi_base · l10n_ar_afip_ws · WSFEv1</code>
+      <code>trx_l10n_ar_edi · trx_l10n_ar_edi_base · l10n_ar_afip_ws · WSFEv1</code>
     </div>
     <span class="tag t-ok">Producción</span>
   </div>
@@ -183,7 +183,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
     <div class="icon bg-blue">🌍</div>
     <div>
       <div class="name">Factura de exportación</div>
-      <code>l10n_ar_trx_edi · l10n_ar_afip_ws · WSFEX</code>
+      <code>trx_l10n_ar_edi · l10n_ar_afip_ws · WSFEX</code>
     </div>
     <span class="tag t-ok">Producción</span>
   </div>
@@ -233,7 +233,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
     <div class="icon bg-pink">🛒</div>
     <div>
       <div class="name">POS con factura electrónica</div>
-      <code>l10n_ar_trx_pos_edi</code>
+      <code>trx_l10n_ar_pos_edi</code>
     </div>
     <span class="tag t-ok">Producción</span>
   </div>
@@ -253,7 +253,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
     <div class="icon bg-cyan">🔍</div>
     <div>
       <div class="name">Constatación de comprobantes en ARCA</div>
-      <code>l10n_ar_trx_edi (botón) · l10n_ar_afip_ws · WSCDC</code>
+      <code>trx_l10n_ar_edi (botón) · l10n_ar_afip_ws · WSCDC</code>
     </div>
     <span class="tag t-ok">Producción</span>
   </div>
@@ -407,7 +407,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
     <div class="icon bg-green">💱</div>
     <div>
       <div class="name">Cotización USD/EUR diaria automática</div>
-      <code>l10n_ar_trx_edi (cron + lib BNA + DolarApi)</code>
+      <code>trx_l10n_ar_edi (cron + lib BNA + DolarApi)</code>
     </div>
     <span class="tag t-ok">Producción</span>
   </div>
@@ -444,7 +444,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
     <div class="icon bg-amber">🔐</div>
     <div>
       <div class="name">CSR Wizard — generación de certificados</div>
-      <code>l10n_ar_trx_edi · wizards/l10n_ar_csr_wizard.py</code>
+      <code>trx_l10n_ar_edi · wizards/l10n_ar_csr_wizard.py</code>
     </div>
     <span class="tag t-ok">Producción</span>
   </div>
@@ -513,7 +513,7 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
   <li><code>git clone https://github.com/trixocom/odoo-argentina-trx-ce.git /opt/odoo/addons/argentina/</code></li>
   <li>Agregar al <code>odoo.conf</code> el path <code>/opt/odoo/addons/argentina/</code></li>
   <li>Reiniciar Odoo, actualizar lista de aplicaciones</li>
-  <li>Instalar <strong>l10n_ar_trx_edi</strong> (las dependencias se instalan en cascada)</li>
+  <li>Instalar <strong>trx_l10n_ar_edi</strong> (las dependencias se instalan en cascada)</li>
   <li>Subir certificado AFIP en <em>Configuración → Certificados</em></li>
   <li>Activar Localización Argentina y configurar empresa, journals, etc.</li>
 </ol>
@@ -522,13 +522,13 @@ code{background:#f3f4f6;padding:1px 6px;border-radius:3px;font-size:12px;color:#
 
 <table>
 <tr><th>Módulo</th><th>Versión</th><th>Estado</th></tr>
-<tr><td><code>l10n_ar_trx_edi_base</code></td><td>19.0.0.1.1</td><td><span class="tag t-ok">Producción</span></td></tr>
+<tr><td><code>trx_l10n_ar_edi_base</code></td><td>19.0.0.1.1</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_afip_ws</code></td><td>19.0.0.5.0</td><td><span class="tag t-ok">Producción</span></td></tr>
-<tr><td><code>l10n_ar_trx_edi</code></td><td>19.0.0.3.4</td><td><span class="tag t-ok">Producción</span></td></tr>
+<tr><td><code>trx_l10n_ar_edi</code></td><td>19.0.0.3.4</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_padron_query</code></td><td>19.0.x</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_libro_iva_digital</code></td><td>19.0.x</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_iva_simple</code></td><td>19.0.x</td><td><span class="tag t-ok">Producción</span></td></tr>
-<tr><td><code>l10n_ar_trx_pos_edi</code></td><td>19.0.x</td><td><span class="tag t-ok">Producción</span></td></tr>
+<tr><td><code>trx_l10n_ar_pos_edi</code></td><td>19.0.x</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_caea</code></td><td>19.0.1.2.0</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_mis_comprobantes</code></td><td>19.0.2.0.0</td><td><span class="tag t-ok">Producción</span></td></tr>
 <tr><td><code>l10n_ar_iibb_percepciones</code></td><td>19.0.1.1.0</td><td><span class="tag t-ok">Producción + ARBA WS</span></td></tr>

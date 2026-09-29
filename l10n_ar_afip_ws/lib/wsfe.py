@@ -22,7 +22,7 @@ agregar a medida que los tests los reclamen.
 
 Toda la capa acá es *pura*: recibe datos como diccionarios, devuelve
 datos como diccionarios. El mapeo account.move ↔ FECAERequest se hace
-en el módulo `l10n_ar_trx_edi` (que sí importa Odoo).
+en el módulo `trx_l10n_ar_edi` (que sí importa Odoo).
 """
 import logging
 

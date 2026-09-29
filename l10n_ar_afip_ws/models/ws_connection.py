@@ -99,7 +99,7 @@ class L10nArAfipWsConnection(models.Model):
 
         Sucursales (`parent_id`): la conexión se resuelve SIEMPRE sobre la
         compañía raíz. Una sucursal comparte CUIT y certificado con su raíz
-        (ver `l10n_ar_trx_edi_base`) y el TA de WSAA es único por (CUIT,
+        (ver `trx_l10n_ar_edi_base`) y el TA de WSAA es único por (CUIT,
         servicio): si cada sucursal pidiera el suyo, AFIP rechazaría el
         segundo con "El CEE ya posee un TA válido". Se usa sudo porque el
         usuario de una sucursal no necesariamente tiene la raíz entre sus
@@ -281,7 +281,7 @@ class L10nArAfipWsConnection(models.Model):
         """Devuelve el `certificate.certificate` a usar para esta conexión.
 
         Busca el cert configurado en la compañía. Si no hay, error claro.
-        La relación company → certificate la define `l10n_ar_trx_edi_base`
+        La relación company → certificate la define `trx_l10n_ar_edi_base`
         (campo `l10n_ar_afip_ws_environment` + `l10n_ar_afip_ws_cert_id`).
         """
         self.ensure_one()

@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI — Cotejo Mis Comprobantes",
-    "version": "19.0.2.0.2",
+    "version": "19.0.2.0.3",
     "category": "Accounting/Localizations/Reporting",
     "summary": "Importa Mis Comprobantes y coteja diferencias con Odoo",
     "description": """
@@ -35,7 +35,7 @@ Funcionalidades:
     "website": "https://trixocom.com",
     "license": "LGPL-3",
     "depends": [
-        "l10n_ar_trx_edi",
+        "trx_l10n_ar_edi",
         "mail",
     ],
     "external_dependencies": {

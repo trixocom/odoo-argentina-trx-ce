@@ -58,19 +58,19 @@ Odoo Community trae el módulo base `l10n_ar` con el plan de cuentas, tipos de c
         ┌───────────────────────────┼─────────────────────────┐
         │                           │                          │
 ┌───────▼──────────┐    ┌──────────▼───────┐    ┌────────────▼─────┐
-│ l10n_ar_trx_edi_base │    │  l10n_ar_afip_ws │    │   certificate    │
+│ trx_l10n_ar_edi_base │    │  l10n_ar_afip_ws │    │   certificate    │
 │   (campos AFIP)  │    │  (WSAA + WSFE)   │    │ (cert + key)     │
 └────────┬─────────┘    └────────┬─────────┘    └──────────────────┘
          │                       │
          └───────────┬───────────┘
                      │
             ┌────────▼─────────┐
-            │   l10n_ar_trx_edi    │  Orquestador emisión + QR
+            │   trx_l10n_ar_edi    │  Orquestador emisión + QR
             └────────┬─────────┘
                      │
         ┌────────────┼────────────┬────────────┬────────────┐
         │            │            │            │            │
-   l10n_ar_caea  l10n_ar_trx_pos_edi  Libro IVA   IVA Simple   Mis Cbtes
+   l10n_ar_caea  trx_l10n_ar_pos_edi  Libro IVA   IVA Simple   Mis Cbtes
    (contingencia)  (POS+FE)       Digital                   (cotejo)
 
 
@@ -281,7 +281,7 @@ addons_path = /opt/odoo/addons,/opt/odoo/addons/argentina
 # 3. Reiniciar Odoo y actualizar lista de aplicaciones
 sudo systemctl restart odoo
 
-# 4. En Odoo: Apps → buscar "l10n_ar_trx_edi" → Instalar
+# 4. En Odoo: Apps → buscar "trx_l10n_ar_edi" → Instalar
 #    (las dependencias se instalan en cascada)
 
 # 5. Subir certificado AFIP en Configuración → Certificados
@@ -295,13 +295,13 @@ sudo systemctl restart odoo
 
 | Módulo | Versión | Estado |
 |---|---|---|
-| `l10n_ar_trx_edi_base` | 19.0.0.1.1 | ✅ Producción |
+| `trx_l10n_ar_edi_base` | 19.0.0.1.1 | ✅ Producción |
 | `l10n_ar_afip_ws` | 19.0.0.5.0 | ✅ Producción |
-| `l10n_ar_trx_edi` | 19.0.0.3.4 | ✅ Producción |
+| `trx_l10n_ar_edi` | 19.0.0.3.4 | ✅ Producción |
 | `l10n_ar_padron_query` | 19.0.x | ✅ Producción |
 | `l10n_ar_libro_iva_digital` | 19.0.x | ✅ Producción |
 | `l10n_ar_iva_simple` | 19.0.x | ✅ Producción |
-| `l10n_ar_trx_pos_edi` | 19.0.x | ✅ Producción |
+| `trx_l10n_ar_pos_edi` | 19.0.x | ✅ Producción |
 | `l10n_ar_caea` | 19.0.1.2.0 | ✅ Producción |
 | `l10n_ar_mis_comprobantes` | 19.0.2.0.0 | ✅ Producción |
 | `l10n_ar_iibb_percepciones` | 19.0.1.1.0 | ✅ Producción + ARBA WS |

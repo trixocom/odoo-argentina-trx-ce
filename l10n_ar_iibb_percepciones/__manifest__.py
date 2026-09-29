@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI — Percepciones y Retenciones IIBB",
-    "version": "19.0.1.1.2",
+    "version": "19.0.1.1.3",
     "category": "Accounting/Localizations",
     "summary": "Percepciones y retenciones IIBB provinciales: ARBA, AGIP, Santa Fe, Córdoba",
     "description": """
@@ -26,7 +26,7 @@ Exportación para SIAp/SICORE/SIRE en formato TXT.
     "website": "https://trixocom.com",
     "license": "LGPL-3",
     "depends": [
-        "l10n_ar_trx_edi",
+        "trx_l10n_ar_edi",
     ],
     "external_dependencies": {
         "python": ["requests"],

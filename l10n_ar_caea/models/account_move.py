@@ -79,7 +79,7 @@ class AccountMove(models.Model):
         """Override del dispatcher CAE.
 
         * Journal PV exclusivo CAEA → aplica CAEA local, jamás WSFE.
-          (Cubre invocaciones manuales; el hook `_post` de l10n_ar_trx_edi ya
+          (Cubre invocaciones manuales; el hook `_post` de trx_l10n_ar_edi ya
           saltea estos journals porque no tienen WS de emisión.)
         * Preempción: si el monitor reporta WSFE caído → re-ruteo directo
           al diario CAEA sin esperar el timeout de 60s.
@@ -144,7 +144,7 @@ class AccountMove(models.Model):
         el CAEA vigente. El número se genera en la secuencia local del
         PV exclusivo CAEA (sin red).
 
-        Se llama con el move `posted` (desde el hook de l10n_ar_trx_edi) o
+        Se llama con el move `posted` (desde el hook de trx_l10n_ar_edi) o
         `draft`. Si estaba posted: draft → cambio de diario → repost.
         El repost no pide CAE porque el move ya sale con auth_code.
         """
@@ -239,12 +239,12 @@ class AccountMove(models.Model):
     # Hook _post — diarios CAEA emiten sin red
     # ------------------------------------------------------------------
     def _post(self, soft=True):
-        """Tras el post (y el hook CAE de l10n_ar_trx_edi, que saltea los
+        """Tras el post (y el hook CAE de trx_l10n_ar_edi, que saltea los
         diarios CAEA por no tener WS), aplica el CAEA vigente a los
         comprobantes posteados en PV exclusivos CAEA.
 
         Si no hay CAEA vigente, revertimos a borrador con error claro —
-        misma semántica atómica que el hook de l10n_ar_trx_edi.
+        misma semántica atómica que el hook de trx_l10n_ar_edi.
         """
         posted = super()._post(soft=soft)
         to_revert = self.env["account.move"]

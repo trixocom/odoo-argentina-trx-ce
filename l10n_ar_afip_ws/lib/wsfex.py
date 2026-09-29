@@ -20,7 +20,7 @@ A diferencia del WSFEv1 (mercado interno), WSFEX:
 Spec oficial: https://www.afip.gob.ar/fe/documentos/manualdesarrollador-COMPG-v2.5.pdf
 
 Lib pura — recibe dicts, devuelve dicts. El mapping `account.move ↔
-FEXAuthorizeRequest` se hace en `l10n_ar_trx_edi/lib/payload_fex.py`.
+FEXAuthorizeRequest` se hace en `trx_l10n_ar_edi/lib/payload_fex.py`.
 """
 import logging
 
@@ -171,7 +171,7 @@ def authorize(auth, cmp_dict, environment, transport):
         Tipo_expo, permisos, Dst_cmp, Cliente, Domicilio_cliente,
         Id_impositivo, Cuit_pais_cliente, Moneda_Id, Moneda_ctz,
         Imp_total, Idioma_cbte, Items, Cmps_asoc, ...).
-        El builder recomendado: ``l10n_ar_trx_edi.lib.payload_fex.build_fex_request``.
+        El builder recomendado: ``trx_l10n_ar_edi.lib.payload_fex.build_fex_request``.
     :param environment: 'testing' o 'production'.
     :param transport: instancia de ``CapturingTransport`` (para auditar XML).
     :return: dict con:

@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI — CAEA",
-    "version": "19.0.2.1.0",
+    "version": "19.0.2.1.1",
     "category": "Accounting/Localizations/EDI",
     "summary": "CAEA — Código de Autorización Electrónico Anticipado (régimen de contingencia)",
     "description": """
@@ -42,7 +42,7 @@ Plazos AFIP (RG 5785/2025):
     "website": "https://trixocom.com",
     "license": "LGPL-3",
     "depends": [
-        "l10n_ar_trx_edi",
+        "trx_l10n_ar_edi",
     ],
     "data": [
         "security/ir.model.access.csv",

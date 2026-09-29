@@ -1,7 +1,7 @@
 # Part of l10n-ar-edi-community. See LICENSE file for full copyright and licensing details.
 {
     "name": "Argentina EDI — Libro IVA Digital + Subdiario IVA",
-    "version": "19.0.0.2.1",
+    "version": "19.0.0.2.2",
     "category": "Accounting/Localizations/Reporting",
     "summary": "Libro IVA Digital (RG 5616, TXT) + Subdiario IVA (PDF/XLSX) para Odoo Community",
     "description": """
@@ -30,7 +30,7 @@ https://www.afip.gob.ar/libro-iva-digital/documentos/libro-iva-digital-diseno-re
     "website": "https://trixocom.com",
     "license": "LGPL-3",
     "depends": [
-        "l10n_ar_trx_edi",
+        "trx_l10n_ar_edi",
     ],
     "external_dependencies": {
         # openpyxl: requerido por el Subdiario IVA → Exportar XLSX. El

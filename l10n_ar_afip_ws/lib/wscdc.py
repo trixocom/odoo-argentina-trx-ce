@@ -45,7 +45,7 @@ Operaciones auxiliares (catálogos, todas requieren TA):
 
 Toda la capa acá es *pura*: recibe datos como diccionarios, devuelve datos
 como diccionarios. El mapeo account.move ↔ CmpReq se hace en el módulo
-`l10n_ar_trx_edi` (que sí importa Odoo).
+`trx_l10n_ar_edi` (que sí importa Odoo).
 """
 import logging
 
